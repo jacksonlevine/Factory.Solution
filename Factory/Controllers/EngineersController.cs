@@ -56,81 +56,60 @@ namespace Factory.Controllers
 
     public ActionResult Edit(int id)
     {
-      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
-      ViewBag.SpecialtyId = new SelectList(_db.Specialties, "SpecialtyId", "Name");
-      return View(thisDoctor);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      return View(thisMachine);
     }
 
     [HttpPost]
-    public ActionResult Edit(Doctor doctor)
+    public ActionResult Edit(Engineer engineer)
     {
-      _db.Doctors.Update(doctor);
+      _db.Engineers.Update(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
     {
-      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(Engineer => engineer.EngineerId == id);
       return View(thisDoctor);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
-      _db.Doctors.Remove(thisDoctor);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddPatient(int id)
+    public ActionResult AddMachine(int id)
     {
-      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
-      ViewBag.PatientId = new SelectList(_db.Patients, "PatientId", "Name");
-      return View(thisDoctor);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      return View(thisEngineer);
     }
 
     [HttpPost]
-    public ActionResult AddPatient(Doctor doctor, int patientId)
+    public ActionResult AddMachine(Engineer engineer, int machineId)
     {
 #nullable enable
-      DoctorPatient? joinEntity = _db.DoctorPatients.FirstOrDefault(join => (join.PatientId == patientId && join.DoctorId == doctor.DoctorId));
+      EngineerMachine? joinEntity = _db.EngineerMachines.FirstOrDefault(join => (join.MachineId == machineId && join.EngineerId == engineer.EngineerId));
 #nullable disable
-      if (joinEntity == null && patientId != 0)
+      if (joinEntity == null && machineId != 0)
       {
-        _db.DoctorPatients.Add(new DoctorPatient() { PatientId = patientId, DoctorId = doctor.DoctorId });
+        _db.EngineerMachines.Add(new EngineerMachine() { MachineId = machineId, EngineerId = engineer.EngineerId });
         _db.SaveChanges();
       }
-      return RedirectToAction("Details", new { id = doctor.DoctorId });
-    }
-
-    public ActionResult AddSpecialty(int id)
-    {
-      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
-      ViewBag.SpecialtyId = new SelectList(_db.Specialties, "SpecialtyId", "Name");
-      return View(thisDoctor);
-    }
-
-    [HttpPost]
-    public ActionResult AddSpecialty(Doctor doctor, int specialtyId)
-    {
-#nullable enable
-      DoctorSpecialty? joinEntity = _db.DoctorSpecialties.FirstOrDefault(join => (join.DoctorId == doctor.DoctorId && join.SpecialtyId == specialtyId));
-#nullable disable
-      if (joinEntity == null && specialtyId != 0)
-      {
-        _db.DoctorSpecialties.Add(new DoctorSpecialty() { DoctorId = doctor.DoctorId, SpecialtyId = specialtyId });
-        _db.SaveChanges();
-      }
-      return RedirectToAction("Details", new { id = doctor.DoctorId });
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
 
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
-      DoctorPatient joinEntry = _db.DoctorPatients.FirstOrDefault(entry => entry.DoctorPatientId == joinId);
-      _db.DoctorPatients.Remove(joinEntry);
+      EngineerMachine joinEntry = _db.DoctorPatients.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
+      _db.EngineerMachines.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
