@@ -90,7 +90,11 @@ namespace Factory.Controllers
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       if(_db.Machines.ToList().Count == 0)
       {
-        ViewBag.MachineId = null;
+        ViewBag.isMachinesEmpty = true;
+      }
+      else
+      {
+        ViewBag.isMachinesEmpty = false;
       }
       return View(thisEngineer);
     }
