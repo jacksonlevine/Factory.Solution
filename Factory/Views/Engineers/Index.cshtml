@@ -5,26 +5,26 @@
 @using Factory.Models;
 @model List<Factory.Models.Engineer>;
 
-<h1>Engineers</h1>
-
-@if (@Model.Count == 0)
-{
-  <h3>No Engineers have been added yet!</h3>
-}
-else
-{
-  @foreach(Engineer Engineer in Model)
+<div class="engineer">
+  <h1>Engineers</h1>
+  @if (@Model.Count == 0)
   {
-    <li>@Html.ActionLink($"{Engineer.Name}", "Details", new { id = Engineer.EngineerId }) | 
-      @foreach(EngineerMachine join in Engineer.JoinEntities)
-      {
-        @Html.ActionLink($"{join.Machine.Name} + ", "Details", "Machines", new {id = join.Machine.MachineId} )
-      }
-    </li>
+    <h3>No Engineers have been added yet!</h3>
   }
-}
-
-<br>
-<div id="nav-links">
-  <p>@Html.ActionLink("Add new Engineer", "Create")</p>
+  else
+  {
+    @foreach(Engineer Engineer in Model)
+    {
+      <li>@Html.ActionLink($"{Engineer.Name}", "Details", new { id = Engineer.EngineerId }) | 
+        @foreach(EngineerMachine join in Engineer.JoinEntities)
+        {
+          @Html.ActionLink($"{join.Machine.Name} + ", "Details", "Machines", new {id = join.Machine.MachineId} )
+        }
+      </li>
+    }
+  }
+  <br>
+  <div id="nav-links">
+    <p>@Html.ActionLink("Add new Engineer", "Create")</p>
+  </div>
 </div>

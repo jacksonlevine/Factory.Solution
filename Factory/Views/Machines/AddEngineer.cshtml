@@ -3,29 +3,25 @@
 }
 
 @model Factory.Models.Machine
-
-<h2>Add a Engineer</h2>
-
-<h4>Add a Engineer to this Machine's roster: @Html.DisplayFor(model => model.Name)</h4>
-
-@if(ViewBag.isEngineersEmpty == true)
-{
-  <p class="red">There are no engineers to work on this machine! You will not be able to assign a worker for this machine. Please add an engineer.</p>
-}
-else
-{
-  @using (Html.BeginForm())
+<div class="machine">
+  <h2>Add a Engineer</h2>
+  <h4>Add a Engineer to this Machine's roster: @Html.DisplayFor(model => model.Name)</h4>
+  @if(ViewBag.isEngineersEmpty == true)
   {
-    @Html.HiddenFor(model => model.MachineId)
-
-    @Html.Label("Select Engineer")
-    @Html.DropDownList("EngineerId")
-
-    <input type="submit" value="Save" />
+    <p class="red">There are no engineers to work on this machine! You will not be able to assign a worker for this machine. Please add an engineer.</p>
   }
-}
-
-<br>
-<div id="nav-links">
-  <p>@Html.ActionLink("Back to List of Machines", "Index")</p>
+  else
+  {
+    @using (Html.BeginForm())
+    {
+      @Html.HiddenFor(model => model.MachineId)
+      @Html.Label("Select Engineer")
+      @Html.DropDownList("EngineerId")
+      <input type="submit" value="Save" />
+    }
+  }
+  <br>
+  <div id="nav-links">
+    <p>@Html.ActionLink("Back to List of Machines", "Index")</p>
+  </div>
 </div>
