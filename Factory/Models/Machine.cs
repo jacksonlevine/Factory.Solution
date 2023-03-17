@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 namespace Factory.Models
 {
+  using System.Collections.Generic;
   public class Machine
   {
     public int MachineId { get; set; }

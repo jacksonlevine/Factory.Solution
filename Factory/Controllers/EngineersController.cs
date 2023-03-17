@@ -58,7 +58,7 @@ namespace Factory.Controllers
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
-      return View(thisMachine);
+      return View(thisEngineer);
     }
 
     [HttpPost]
@@ -71,8 +71,8 @@ namespace Factory.Controllers
 
     public ActionResult Delete(int id)
     {
-      Engineer thisEngineer = _db.Engineers.FirstOrDefault(Engineer => engineer.EngineerId == id);
-      return View(thisDoctor);
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
     }
 
     [HttpPost, ActionName("Delete")]
@@ -108,7 +108,7 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
-      EngineerMachine joinEntry = _db.DoctorPatients.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
+      EngineerMachine joinEntry = _db.EngineerMachines.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.EngineerMachines.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
