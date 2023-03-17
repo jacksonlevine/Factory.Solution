@@ -25,21 +25,21 @@ namespace Factory.Controllers
     }
     public ActionResult Create()
     {
-      ViewBag.SpecialtyId = new SelectList(_db.Specialties, "SpecialtyId", "Name");
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Doctor doctor)
+    public ActionResult Create(Engineer engineer)
     {
       if (!ModelState.IsValid)
       {
-        ViewBag.SpecialtyId = new SelectList(_db.Specialties, "SpecialtyId", "Name");
-        return View(doctor);
+        ViewBag.MachineId= new SelectList(_db.Machines, "MachineId", "Name");
+        return View(engineer);
       }
       else
       {
-        _db.Doctors.Add(doctor);
+        _db.Engineers.Add(engineer);
         _db.SaveChanges();
         return RedirectToAction("Index");
       }
@@ -47,13 +47,11 @@ namespace Factory.Controllers
 
     public ActionResult Details(int id)
     {
-      Doctor thisDoctor = _db.Doctors
-          .Include(doctor => doctor.JoinEntities2)
-          .ThenInclude(join => join.Specialty)
-          .Include(doctor => doctor.JoinEntities)
-          .ThenInclude(join => join.Patient)
-          .FirstOrDefault(doctor => doctor.DoctorId == id);
-      return View(thisDoctor);
+      Engineer thisEngineer = _db.Engineers
+          .Include(engineer => engineer.JoinEntities)
+          .ThenInclude(join => join.Machine)
+          .FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
     }
 
     public ActionResult Edit(int id)
