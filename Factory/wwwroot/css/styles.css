@@ -5,14 +5,12 @@ body
   flex-direction: column;
   align-items: center;
 }
-
 .container
 {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .engineer,
 .machine
 {
@@ -22,7 +20,6 @@ body
   padding: 20px;
   background-color: aqua;
 }
-
 .machine
 {
   background-color: darkorange;

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace Factory.Controllers
 {
   public class EngineersController : Controller
@@ -28,7 +27,6 @@ namespace Factory.Controllers
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View();
     }
-
     [HttpPost]
     public ActionResult Create(Engineer engineer)
     {
@@ -44,7 +42,6 @@ namespace Factory.Controllers
         return RedirectToAction("Index");
       }
     }
-
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
@@ -53,14 +50,12 @@ namespace Factory.Controllers
           .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
-
     public ActionResult Edit(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View(thisEngineer);
     }
-
     [HttpPost]
     public ActionResult Edit(Engineer engineer)
     {
@@ -68,13 +63,11 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
     public ActionResult Delete(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
-
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
@@ -83,7 +76,6 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
     public ActionResult AddMachine(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
@@ -98,13 +90,12 @@ namespace Factory.Controllers
       }
       return View(thisEngineer);
     }
-
     [HttpPost]
     public ActionResult AddMachine(Engineer engineer, int machineId)
     {
-#nullable enable
+      #nullable enable
       EngineerMachine? joinEntity = _db.EngineerMachines.FirstOrDefault(join => (join.MachineId == machineId && join.EngineerId == engineer.EngineerId));
-#nullable disable
+      #nullable disable
       if (joinEntity == null && machineId != 0)
       {
         _db.EngineerMachines.Add(new EngineerMachine() { MachineId = machineId, EngineerId = engineer.EngineerId });
@@ -112,7 +103,6 @@ namespace Factory.Controllers
       }
       return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
-
     [HttpPost]
     public ActionResult DeleteJoin(int joinId)
     {
