@@ -24,9 +24,11 @@
 * Install .Net6 SDK
 
 #### Install MySQL Workbench:
+
 * Follow the MySqlWorkbench installation instructions [here](https://www.mysql.com/products/workbench/), open MySql Workbench and select the Local 3306 server.
 
 #### Project Set-up:
+
 1. Clone or download this repository to your machine.
 2. Navigate to the local directory (YourPath/Factory.Solution/Factory) and create a new file "appsettings.json".
 3. Open the file in VS Code and add:
@@ -42,7 +44,7 @@
 For this project, the recommended database name is jackson_levine_factory.
 
 
-4. If it is not already present, create a .gitignore file and add "appsettings.json", "bin", and "obj" to the ignored file list.  
+4. If it is not already present, create a .gitignore file and add "appsettings.json", "bin", "obj", and "/Factory/Migrations" to the ignored file list.  
 5. Open your shell (e.g., Terminal or GitBash) and add your .gitignore file and commit it before adding any other files. 
 6. Navigate to this project's production directory called "Factory". 
 7. In the command line, run the command `dotnet restore` to install all dependencies including EF Core. Then, run `dotnet ef database update` to allow MySQL to auto-create the required database for this project.
