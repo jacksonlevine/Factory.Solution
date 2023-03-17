@@ -8,14 +8,21 @@
 
 <h4>Add a Engineer to this Machine's roster: @Html.DisplayFor(model => model.Name)</h4>
 
-@using (Html.BeginForm())
+@if(ViewBag.isEngineersEmpty == true)
 {
+  <p class="red">There are no engineers to work on this machine! You will not be able to assign a worker for this machine. Please add an engineer.</p>
+}
+else
+{
+  @using (Html.BeginForm())
+  {
     @Html.HiddenFor(model => model.MachineId)
 
     @Html.Label("Select Engineer")
     @Html.DropDownList("EngineerId")
 
     <input type="submit" value="Save" />
+  }
 }
 
 <br>
