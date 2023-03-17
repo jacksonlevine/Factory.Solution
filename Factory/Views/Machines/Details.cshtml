@@ -8,6 +8,7 @@
   <h2>Machine Details</h2>
   <hr />
   <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>  
+  <h3>Operational status: @Html.DisplayFor(model => model.MachineStatus)</h3>  </h3>
   @if(@Model.JoinEntities.Count == 0)
   {
     <p>This Machine does not have any Engineers yet!</p>

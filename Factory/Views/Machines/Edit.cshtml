@@ -12,6 +12,8 @@
     @Html.HiddenFor(model => model.MachineId)
     @Html.LabelFor(model => model.Name)
     @Html.EditorFor(model => model.Name)
+    @Html.Label("Machine's operational status:")
+    @Html.EditorFor(model => model.MachineStatus)
     <input type="submit" value="Save" />
   }
   <br>

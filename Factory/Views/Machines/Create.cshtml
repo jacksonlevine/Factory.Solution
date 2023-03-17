@@ -12,6 +12,8 @@
   
     @Html.LabelFor(model => model.Name)
     @Html.TextBoxFor(model => model.Name)
+    @Html.Label("Please describe the machine's working status:")
+    @Html.TextBoxFor(model => model.MachineStatus)
     <input type="submit" value="Add new Machine" class="btn btn-default" />
   }
   <br>

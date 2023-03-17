@@ -7,6 +7,7 @@ namespace Factory.Models
     public int MachineId { get; set; }
     [Required(ErrorMessage = "The machine must have a name!")]
     public string Name { get; set; }
+    public string MachineStatus { get; set; }
     public List<EngineerMachine> JoinEntities { get; }
   }
 }
