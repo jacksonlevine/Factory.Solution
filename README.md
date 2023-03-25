@@ -22,6 +22,8 @@
 
 ## Description
 
+This project demonstrates how to have a many-to-many relationship between objects in a SQL database using EF core.
+
 ### Setup Instructions
 
 #### You Will Need: 
